@@ -78,8 +78,6 @@ WorldMap::prepareBg()
             Path::dataReadPath("images/menu/map_lower.png"),
             Path::dataReadPath("images/menu/map_mask.png"));
 
-    m_maskIntro = m_bg->getMaskAt(V2(0, 0));
-    m_maskExit = m_bg->getMaskAt(V2(m_bg->getW() - 1, 0));
     m_maskCredits = m_bg->getMaskAt(V2(0, m_bg->getH() - 1));
     m_maskOptions = m_bg->getMaskAt(V2(m_bg->getW() - 1, m_bg->getH() - 1));
     m_activeMask = m_bg->getNoMask();
@@ -171,10 +169,7 @@ WorldMap::watchCursor()
     }
 
     m_activeMask = m_bg->getMaskAtWorld(mouseLoc);
-    if (m_activeMask == m_maskIntro
-            || m_activeMask == m_maskExit
-            || m_activeMask == m_maskCredits
-            || m_activeMask == m_maskOptions)
+    if (m_activeMask == m_maskCredits || m_activeMask == m_maskOptions)
     {
         m_bg->setActiveMask(m_activeMask);
     }
@@ -207,22 +202,10 @@ WorldMap::runSelected()
                 m_selected->getBestAuthor());
         level->fillStatus(m_levelStatus);
 
-        // if (m_selected->getState() == LevelNode::STATE_SOLVED) {
-        //     Pedometer *pedometer = new Pedometer(m_levelStatus, level);
-        //     pushState(pedometer);
-        // }
-        // else {
-            pushState(level);
-        // }
+        pushState(level);
     }
     else {
-        if (m_activeMask == m_maskIntro) {
-            runIntro();
-        }
-        else if (m_activeMask == m_maskExit) {
-            quitState();
-        }
-        else if (m_activeMask == m_maskCredits) {
+        if (m_activeMask == m_maskCredits) {
             runCredits();
         }
         else if (m_activeMask == m_maskOptions) {
