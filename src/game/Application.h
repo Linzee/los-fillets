@@ -13,7 +13,7 @@ class AgentPack;
 class Application : public NoCopy, public BaseListener {
     private:
         AgentPack *m_agents;
-    public:
+        int m_timeinterval;
         bool m_quit;
 
     private:

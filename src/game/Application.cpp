@@ -74,13 +74,17 @@ Application::init(int argc, char *argv[])
     addSoundAgent();
 
     m_agents->init();
+
+    m_timeinterval = OptionAgent::agent()->getAsInt("timeinterval", 100);
 }
 //-----------------------------------------------------------------
     void
 Application::run()
 {
     #ifdef __EMSCRIPTEN__
+      if(!m_quit && TimerAgent::agent()->getNextTime() <= SDL_GetTicks()) {
         m_agents->update();
+      }
     #else
         while (!m_quit) {
             m_agents->update();
@@ -92,6 +96,7 @@ Application::run()
     void
 Application::shutdown()
 {
+    m_quit = true;
     m_agents->shutdown();
 }
 //-----------------------------------------------------------------

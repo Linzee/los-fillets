@@ -26,6 +26,7 @@ class TimerAgent : public BaseAgent {
         virtual void own_update();
     public:
         Uint32 getDeltaTime() const { return m_deltaTime; }
+        Uint32 getNextTime() const { return m_nextTime; }
         int getCycles() const { return m_count; }
 };
 

@@ -10,6 +10,8 @@
 
 #include "OptionAgent.h"
 
+#define FPS 30
+
 //-----------------------------------------------------------------
     void
 TimerAgent::own_init()
@@ -44,8 +46,8 @@ TimerAgent::own_update()
     m_count++;
 
     Uint32 now = SDL_GetTicks();
-    m_nextTime = now + (1000 / 30);
+    m_nextTime = now + getTimeInterval();
 
-    m_deltaTime = 1000 / 30;
+    m_deltaTime = now - m_lastTime;
     m_lastTime = now;
 }

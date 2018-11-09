@@ -123,21 +123,19 @@ main(int argc, char *argv[])
             }
 
             loop = [&] () {
-              if(!app.m_quit) {
-                try {
-                  app.run();
-                }
-                catch (HelpException &e) {
-                    printf("%s\n", e.what());
-                }
-                catch (BaseException &e) {
-                    LOG_ERROR(e.info());
-                    app.m_quit = true;
-                }
+              try {
+                app.run();
+              }
+              catch (HelpException &e) {
+                  printf("%s\n", e.what());
+              }
+              catch (BaseException &e) {
+                  LOG_ERROR(e.info());
+                  app.shutdown();
               }
             };
 
-            emscripten_set_main_loop(main_loop, 10, 1);
+            emscripten_set_main_loop(main_loop, 0, 1);
         #else
 
             try {
