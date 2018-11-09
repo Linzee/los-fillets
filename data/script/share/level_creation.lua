@@ -231,4 +231,3 @@ function addFishAnim(model, look_dir, directory)
 
     model:runAnim("rest")
 end
-

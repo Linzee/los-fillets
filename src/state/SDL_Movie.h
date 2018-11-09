@@ -2,7 +2,7 @@
 #define HEADER_SDLMOVIE_H
 #ifdef HAVE_SMPEG
 
-#include "SDL.h"
+#include "/home/ienze/git/emsdk/emscripten/1.38.16/system/include/SDL/SDL.h"
 
 #include "smpeg/smpeg.h"
 
@@ -113,7 +113,7 @@ public:
     {
         MaxScaleX = maxscalex;
         MaxScaleY = maxscaley;
-        
+
         // Limit how much we can scale by
         MaxScale = (maxscalex > maxscaley ? maxscaley : maxscalex);
 
@@ -126,7 +126,7 @@ public:
         SDL_Surface *tempSurface2 = SDL_CreateRGBSurface( SDL_SWSURFACE, movieInfo.width * MaxScaleX, movieInfo.height * MaxScaleY, 32, screen->format->Rmask, screen->format->Gmask, screen->format->Bmask, screen->format->Amask );
 
         // Now make a surface optimized for the main screen
-        movieSurface = SDL_DisplayFormat( tempSurface2 );
+        //HACK movieSurface = SDL_DisplayFormat( tempSurface2 );
 
         // Free the temporary surface
         SDL_FreeSurface( tempSurface2 );
@@ -227,4 +227,3 @@ public:
 
 #endif
 #endif
-

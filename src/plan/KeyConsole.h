@@ -8,7 +8,7 @@ class Font;
 #include "Color.h"
 
 #include <string>
-#include "SDL.h"
+#include "/home/ienze/git/emsdk/emscripten/1.38.16/system/include/SDL/SDL.h"
 
 /**
  * Debug console.

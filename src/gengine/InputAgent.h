@@ -8,7 +8,7 @@ class InputHandler;
 #include "Name.h"
 #include "V2.h"
 
-#include "SDL.h"
+#include "/home/ienze/git/emsdk/emscripten/1.38.16/system/include/SDL/SDL.h"
 
 /**
  * Forward input events to handlers.
@@ -16,7 +16,7 @@ class InputHandler;
 class InputAgent : public BaseAgent {
     AGENT(InputAgent, Name::INPUT_NAME);
     private:
-        Uint8 *m_keys;
+        //HACK Uint8 *m_keys;
         KeyBinder *m_keyBinder;
         InputHandler *m_handler;
     private:

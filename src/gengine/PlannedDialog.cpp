@@ -71,15 +71,15 @@ PlannedDialog::isPlaying() const
 {
     bool result = false;
     if (m_channel > -1) {
-        if (Mix_Playing(m_channel)) {
-            result = m_dialog->equalSound(Mix_GetChunk(m_channel));
-        }
+        // HACK if (Mix_Playing(m_channel)) {
+        //    result = m_dialog->equalSound(Mix_GetChunk(m_channel));
+        // }
     }
     return result;
 }
 //-----------------------------------------------------------------
 /**
- * Return true when is playing or 
+ * Return true when is playing or
  * return true for minimal time according subtitle length.
  */
 bool
@@ -95,4 +95,3 @@ PlannedDialog::isTalking() const
 
     return result;
 }
-

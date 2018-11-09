@@ -6,7 +6,7 @@ class SurfaceLock;
 #include "V2.h"
 #include "NoCopy.h"
 
-#include "SDL.h"
+#include "/home/ienze/git/emsdk/emscripten/1.38.16/system/include/SDL/SDL.h"
 
 /**
  * Iterator over surface pixels.

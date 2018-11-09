@@ -32,14 +32,15 @@
 #endif
 
 //NOTE: SYSTEM_DATA_DIR is set to "$(datadir)/games/@PACKAGE@"
-#ifndef SYSTEM_DATA_DIR
-#define SYSTEM_DATA_DIR ""
-#endif
+//HACK ifndef SYSTEM_DATA_DIR
+#define SYSTEM_DATA_DIR "/data"
+//HACK endif
 
 //NOTE: userdir = $HOME + USER_DATA_DIR
-#ifndef USER_DATA_DIR
-#define USER_DATA_DIR ".fillets-ng"
-#endif
+//HACK ifndef USER_DATA_DIR
+//HACK #define USER_DATA_DIR ".fillets-ng"
+#define USER_DATA_DIR "/data"
+//HACK endif
 
 const char *OptionAgent::CONFIG_FILE = "script/options.lua";
 //-----------------------------------------------------------------
@@ -425,4 +426,3 @@ OptionAgent::readUserConfig()
         LOG_WARNING(e.info());
     }
 }
-

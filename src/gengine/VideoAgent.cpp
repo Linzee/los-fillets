@@ -158,7 +158,7 @@ VideoAgent::changeVideoMode(int screen_width, int screen_height)
 VideoAgent::getVideoFlags()
 {
     int videoFlags  = 0;
-    videoFlags |= SDL_HWPALETTE;
+    //HACK videoFlags |= SDL_HWPALETTE;
     videoFlags |= SDL_ANYFORMAT;
     videoFlags |= SDL_SWSURFACE;
 
@@ -227,4 +227,3 @@ VideoAgent::receiveString(const StringMsg *msg)
         throw UnknownMsgException(msg);
     }
 }
-

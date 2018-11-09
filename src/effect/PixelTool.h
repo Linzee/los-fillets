@@ -1,7 +1,7 @@
 #ifndef HEADER_PIXELTOOL_H
 #define HEADER_PIXELTOOL_H
 
-#include "SDL.h"
+#include "/home/ienze/git/emsdk/emscripten/1.38.16/system/include/SDL/SDL.h"
 
 /**
  * Pixel rutines.

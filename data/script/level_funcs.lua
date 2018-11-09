@@ -9,4 +9,3 @@ file_include("script/share/prog_compatible.lua")
 file_include("script/share/level_start.lua")
 
 file_include("script/share/prog_save.lua")
-

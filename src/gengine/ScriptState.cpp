@@ -8,13 +8,15 @@
  */
 #include "ScriptState.h"
 
+#include <string>
+
 #include "Log.h"
 #include "Path.h"
 #include "ScriptException.h"
 
 extern "C" {
-#include "/usr/local/include/lualib.h"
-#include "/usr/local/include/lauxlib.h"
+#include "/home/ienze/git/fillets/lua/src/lualib.h"
+#include "/home/ienze/git/fillets/lua/src/lauxlib.h"
 }
 
 #include "def-script.h"
@@ -57,6 +59,7 @@ ScriptState::insertErrorHandler(int index)
     lua_rawget(m_state, LUA_GLOBALSINDEX);
     lua_insert(m_state, index);
 }
+
 //-----------------------------------------------------------------
 /**
  * Process script on stack.
@@ -66,6 +69,9 @@ ScriptState::insertErrorHandler(int index)
  *
  * @throws ScriptException when script is bad
  */
+
+static int db_errorfb (lua_State *L);
+
     void
 ScriptState::callStack(int error, int params, int returns)
 {
@@ -81,6 +87,7 @@ ScriptState::callStack(int error, int params, int returns)
         if (NULL == msg) {
             msg = "(error with no message)";
         }
+
         ExInfo info = ExInfo("script failure")
             .addInfo("error", msg);
         lua_pop(m_state, 1);

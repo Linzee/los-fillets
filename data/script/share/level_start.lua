@@ -30,7 +30,7 @@ function initModels()
         model.anim = ""
         resetanim(model)
     end
-
+    
     borderShoutLoad()
     stdBoreJokeLoad()
     stdBlackJokeLoad()

@@ -17,7 +17,7 @@
 #include "Name.h"
 #include "MouseStroke.h"
 
-#include "SDL.h"
+#include "/home/ienze/git/emsdk/emscripten/1.38.16/system/include/SDL/SDL.h"
 
 //-----------------------------------------------------------------
 /**
@@ -34,7 +34,7 @@ InputAgent::own_init()
 {
     m_keyBinder = new KeyBinder();
     m_handler = NULL;
-    m_keys = SDL_GetKeyState(NULL);
+    //HACK m_keys = SDL_GetKeyState(NULL);
 
     SDL_EnableUNICODE(1);
 }
@@ -97,7 +97,7 @@ InputAgent::installHandler(InputHandler *handler)
     }
     m_handler = handler;
     if (m_handler) {
-        m_handler->takePressed(m_keys);
+        //HACK m_handler->takePressed(m_keys);
         Uint8 buttons;
         V2 mouseLoc = getMouseState(&buttons);
         m_handler->mouseState(mouseLoc, buttons);
@@ -120,5 +120,3 @@ InputAgent::getMouseState(Uint8 *out_buttons)
     }
     return V2(x, y);
 }
-
-

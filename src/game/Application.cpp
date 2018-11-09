@@ -18,7 +18,6 @@
 #include "TimerAgent.h"
 #include "GameAgent.h"
 #include "SoundAgent.h"
-#include "SDLSoundAgent.h"
 #include "DummySoundAgent.h"
 #include "ScriptAgent.h"
 #include "OptionAgent.h"
@@ -30,7 +29,7 @@
 #include "SimpleMsg.h"
 #include "StringMsg.h"
 
-#include "SDL.h"
+#include "/home/ienze/git/emsdk/emscripten/1.38.16/system/include/SDL/SDL.h"
 #include <stdio.h> // for fflush, stdout
 
 //-----------------------------------------------------------------
@@ -80,10 +79,15 @@ Application::init(int argc, char *argv[])
     void
 Application::run()
 {
-    while (!m_quit) {
+    #ifdef __EMSCRIPTEN__
         m_agents->update();
-    }
+    #else
+        while (!m_quit) {
+            m_agents->update();
+        }
+    #endif
 }
+
 //-----------------------------------------------------------------
     void
 Application::shutdown()
@@ -101,7 +105,7 @@ Application::prepareLogLevel()
     OptionAgent *options = OptionAgent::agent();
     StringMsg *event = new StringMsg(this, "param_changed", "loglevel");
     options->addWatcher("loglevel", event);
-    options->setDefault("loglevel", Log::getLogLevel());
+    options->setDefault("loglevel", Log::LEVEL_DEBUG); // Log::getLogLevel()
 }
 //-----------------------------------------------------------------
     void
@@ -173,23 +177,8 @@ Application::customizeGame()
     void
 Application::addSoundAgent()
 {
-    //TODO: better setting sound on/off
-    //TODO: move to the SoundAgent
-    SoundAgent *soundAgent = NULL;
-    if (OptionAgent::agent()->getAsBool("sound", true)) {
-        soundAgent = new SDLSoundAgent();
-        try {
-            soundAgent->init();
-        }
-        catch (BaseException &e) {
-            LOG_WARNING(e.info());
-            delete soundAgent;
-            soundAgent = new DummySoundAgent();
-        }
-    }
-    else {
-        soundAgent = new DummySoundAgent();
-    }
+    // HACK (disable sound)
+    SoundAgent *soundAgent = new DummySoundAgent();
     m_agents->addAgent(soundAgent);
 }
 
@@ -247,4 +236,3 @@ Application::receiveString(const StringMsg *msg)
                 .addInfo("msg", msg->toString()));
     }
 }
-

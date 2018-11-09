@@ -71,6 +71,7 @@ WorldMap::~WorldMap()
     void
 WorldMap::prepareBg()
 {
+
     m_bg = new LayeredPicture(
             Path::dataReadPath("images/menu/map.png"),
             V2(0, 0),
@@ -206,13 +207,13 @@ WorldMap::runSelected()
                 m_selected->getBestAuthor());
         level->fillStatus(m_levelStatus);
 
-        if (m_selected->getState() == LevelNode::STATE_SOLVED) {
-            Pedometer *pedometer = new Pedometer(m_levelStatus, level);
-            pushState(pedometer);
-        }
-        else {
+        // if (m_selected->getState() == LevelNode::STATE_SOLVED) {
+        //     Pedometer *pedometer = new Pedometer(m_levelStatus, level);
+        //     pushState(pedometer);
+        // }
+        // else {
             pushState(level);
-        }
+        // }
     }
     else {
         if (m_activeMask == m_maskIntro) {
@@ -342,4 +343,3 @@ WorldMap::runOptions()
     MenuOptions *options = new MenuOptions();
     pushState(options);
 }
-

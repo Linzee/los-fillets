@@ -7,7 +7,7 @@ class View;
 #include "Decor.h"
 #include "V2.h"
 
-#include "SDL.h"
+#include "/home/ienze/git/emsdk/emscripten/1.38.16/system/include/SDL/SDL.h"
 
 /**
  * Draw rope between two models.

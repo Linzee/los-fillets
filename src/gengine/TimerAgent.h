@@ -1,10 +1,12 @@
 #ifndef HEADER_TIMERAGENT_H
 #define HEADER_TIMERAGENT_H
 
+#include <unistd.h>
+
 #include "BaseAgent.h"
 #include "Name.h"
 
-#include "SDL.h"
+#include "/home/ienze/git/emsdk/emscripten/1.38.16/system/include/SDL/SDL.h"
 
 /**
  * Delay and framerame.

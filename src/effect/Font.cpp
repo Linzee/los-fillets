@@ -117,6 +117,7 @@ Font::calcTextWidth(const std::string &text)
 SDL_Surface *
 Font::renderText(const std::string &text, const SDL_Color &color) const
 {
+
     std::string content = biditize(text);
     if (text.empty()) {
         content = " ";
@@ -126,25 +127,26 @@ Font::renderText(const std::string &text, const SDL_Color &color) const
                 .addInfo("b", color.b));
     }
 
-    SDL_Surface *raw_surface = TTF_RenderUTF8_Shaded(m_ttfont, content.c_str(),
+    SDL_Surface *raw_surface = TTF_RenderText_Shaded(m_ttfont, content.c_str(),
             color, m_bg);
     if (!raw_surface) {
         throw TTFException(ExInfo("RenderUTF8")
                 .addInfo("text", text));
     }
 
+    //HACK
     //NOTE: at index 0 is bg color
-    if (SDL_SetColorKey(raw_surface, SDL_SRCCOLORKEY, 0) < 0) {
-        throw SDLException(ExInfo("SetColorKey"));
-    }
+    // if (SDL_SetColorKey(raw_surface, SDL_SRCCOLORKEY, 0) < 0) {
+    //     throw SDLException(ExInfo("SetColorKey"));
+    // }
+    //
+    // SDL_Surface *surface = SDL_DisplayFormat(raw_surface);
+    // if (!surface) {
+    //     throw SDLException(ExInfo("DisplayFormat"));
+    // }
+    // SDL_FreeSurface(raw_surface);
 
-    SDL_Surface *surface = SDL_DisplayFormat(raw_surface);
-    if (!surface) {
-        throw SDLException(ExInfo("DisplayFormat"));
-    }
-    SDL_FreeSurface(raw_surface);
-
-    return surface;
+    return raw_surface;
 }
 //-----------------------------------------------------------------
 /**
@@ -166,4 +168,3 @@ Font::renderTextOutlined(const std::string &text,
     outline.drawOnColorKey(surface);
     return surface;
 }
-

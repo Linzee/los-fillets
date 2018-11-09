@@ -13,6 +13,7 @@ class AgentPack;
 class Application : public NoCopy, public BaseListener {
     private:
         AgentPack *m_agents;
+    public:
         bool m_quit;
 
     private:

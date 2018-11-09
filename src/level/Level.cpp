@@ -610,4 +610,3 @@ Level::getCountForWrong() const
     //NOTE: don't forget to change briefcase_help_demo too
     return 75;
 }
-

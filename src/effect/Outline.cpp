@@ -27,7 +27,7 @@ Outline::Outline(const SDL_Color &color, int width)
 void
 Outline::drawOnColorKey(SDL_Surface *surface)
 {
-    Uint32 bgKey = surface->format->colorkey;
+    Uint32 bgKey = 0x000000;//HACK surface->format->colorkey;
     drawOn(surface, bgKey);
 }
 //-----------------------------------------------------------------
@@ -111,5 +111,3 @@ Outline::fillNeighbourhood(SDL_Surface *surface, Uint32 bgKey, int x, int y)
         PixelTool::putPixel(surface, x, y + 1, m_pixel);
     }
 }
-
-

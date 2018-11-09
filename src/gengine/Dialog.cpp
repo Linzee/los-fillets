@@ -29,9 +29,9 @@ Dialog::Dialog(const std::string &lang,
 //-----------------------------------------------------------------
 Dialog::~Dialog()
 {
-    if (m_sound) {
-        Mix_FreeChunk(m_sound);
-    }
+    // HACK if (m_sound) {
+    //     Mix_FreeChunk(m_sound);
+    // }
 }
 //-----------------------------------------------------------------
 /**
@@ -88,5 +88,3 @@ Dialog::getMinTime() const
 {
     return min(180, StringTool::utf8Length(m_subtitle));
 }
-
-

@@ -44,14 +44,8 @@ TimerAgent::own_update()
     m_count++;
 
     Uint32 now = SDL_GetTicks();
-    if (now < m_nextTime) {
-        SDL_Delay(m_nextTime - now);
-    }
+    m_nextTime = now + (1000 / 30);
 
-    now = SDL_GetTicks();
-    //NOTE: every cycle have fixed time interval
-    m_nextTime = now + getTimeInterval();
-
-    m_deltaTime = now - m_lastTime;
+    m_deltaTime = 1000 / 30;
     m_lastTime = now;
 }

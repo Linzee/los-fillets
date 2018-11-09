@@ -90,7 +90,7 @@
  *
  */
 
-#include "SDL.h"
+#include "/home/ienze/git/emsdk/emscripten/1.38.16/system/include/SDL/SDL.h"
 
 #include "Log.h"
 #include "Application.h"
@@ -98,6 +98,11 @@
 #include "BaseException.h"
 
 #include <stdio.h> //printf
+#include <emscripten.h>
+#include <functional>
+
+std::function<void()> loop;
+void main_loop() { loop(); }
 
 //-----------------------------------------------------------------
     int
@@ -106,17 +111,47 @@ main(int argc, char *argv[])
     try {
         Application app;
 
-        try {
-            app.init(argc, argv);
-            app.run();
-        }
-        catch (HelpException &e) {
-            printf("%s\n", e.what());
-        }
-        catch (BaseException &e) {
-            LOG_ERROR(e.info());
-        }
-        app.shutdown();
+        #ifdef __EMSCRIPTEN__
+            try {
+                app.init(argc, argv);
+            }
+            catch (HelpException &e) {
+                printf("%s\n", e.what());
+            }
+            catch (BaseException &e) {
+                LOG_ERROR(e.info());
+            }
+
+            loop = [&] () {
+              if(!app.m_quit) {
+                try {
+                  app.run();
+                }
+                catch (HelpException &e) {
+                    printf("%s\n", e.what());
+                }
+                catch (BaseException &e) {
+                    LOG_ERROR(e.info());
+                    app.m_quit = true;
+                }
+              }
+            };
+
+            emscripten_set_main_loop(main_loop, 10, 1);
+        #else
+
+            try {
+                app.init(argc, argv);
+                app.run();
+            }
+            catch (HelpException &e) {
+                printf("%s\n", e.what());
+            }
+            catch (BaseException &e) {
+                LOG_ERROR(e.info());
+            }
+            app.shutdown();
+        #endif
         return 0;
     }
     catch (BaseException &e) {

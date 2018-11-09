@@ -1,7 +1,5 @@
 -- There is place to customize game before start
 
-print("#init")
-
 --NOTE: hack for win32, lang Czech = cs
 --NOTE: first five characters from LC_CTYPE are stored in "lang" param
 local lang = string.sub(getParam("lang") or "", 1, 5)

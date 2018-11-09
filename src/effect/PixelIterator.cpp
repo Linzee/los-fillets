@@ -49,7 +49,7 @@ PixelIterator::setPos(const V2 &pos)
 bool
 PixelIterator::isTransparent() const
 {
-    return getPixel() == m_surface->format->colorkey;
+    return false; //HACK return getPixel() == m_surface->format->colorkey;
 }
 //-----------------------------------------------------------------
 SDL_Color
@@ -80,4 +80,3 @@ PixelIterator::putPixel(Uint32 pixel)
 {
     PixelTool::packPixel(m_bpp, m_p, pixel);
 }
-
