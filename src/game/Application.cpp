@@ -19,6 +19,7 @@
 #include "GameAgent.h"
 #include "SoundAgent.h"
 #include "DummySoundAgent.h"
+#include "SDLSoundAgent.h"
 #include "ScriptAgent.h"
 #include "OptionAgent.h"
 #include "SubTitleAgent.h"
@@ -182,9 +183,24 @@ Application::customizeGame()
     void
 Application::addSoundAgent()
 {
-    // HACK (disable sound)
-    SoundAgent *soundAgent = new DummySoundAgent();
-    m_agents->addAgent(soundAgent);
+  //TODO: better setting sound on/off
+  //TODO: move to the SoundAgent
+  SoundAgent *soundAgent = NULL;
+  if (OptionAgent::agent()->getAsBool("sound", true)) {
+      soundAgent = new SDLSoundAgent();
+      try {
+          soundAgent->init();
+      }
+      catch (BaseException &e) {
+          LOG_WARNING(e.info());
+          delete soundAgent;
+          soundAgent = new DummySoundAgent();
+      }
+  }
+  else {
+      soundAgent = new DummySoundAgent();
+  }
+  m_agents->addAgent(soundAgent);
 }
 
 //-----------------------------------------------------------------

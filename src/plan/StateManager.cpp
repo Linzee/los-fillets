@@ -104,8 +104,9 @@ StateManager::popState(GameState *who)
         checkStack();
     }
     else {
-        MessagerAgent::agent()->forwardNewMsg(
-                new SimpleMsg(Name::APP_NAME, "quit"));
+        // HACK disable closing of app by ESC
+        // MessagerAgent::agent()->forwardNewMsg(
+        //         new SimpleMsg(Name::APP_NAME, "quit"));
     }
 }
 
@@ -228,4 +229,3 @@ StateManager::installHandlers()
         }
     }
 }
-

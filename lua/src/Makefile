@@ -8,7 +8,7 @@
 PLAT= none
 
 CC= /home/ienze/git/emsdk/emscripten/1.38.16/emcc
-CFLAGS= -O0 -g4 -Wall -I$(INC) $(MYCFLAGS)
+CFLAGS= -Os -Wall -I$(INC) $(MYCFLAGS)
 AR= ar rcu
 RANLIB= ranlib
 RM= rm -f

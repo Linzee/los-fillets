@@ -64,7 +64,8 @@ am__libgengine_a_SOURCES_DIST = AgentPack.cpp AgentPack.h \
 	Path.cpp Path.h Random.cpp Random.h ResDialogPack.cpp \
 	ResDialogPack.h ResImagePack.cpp ResImagePack.h \
 	ResourceException.h ResourcePack.h ResCache.h SDLException.cpp \
-	SDLException.h ScriptAgent.cpp \
+	SDLException.h SDLSoundAgent.cpp SDLSoundAgent.h \
+	SDLMusicLooper.cpp SDLMusicLooper.h ScriptAgent.cpp \
 	ScriptAgent.h ScriptException.h ScriptState.cpp ScriptState.h \
 	SimpleMsg.h SoundAgent.cpp SoundAgent.h StringMsg.cpp \
 	StringMsg.h StringTool.cpp StringTool.h TimerAgent.cpp \
@@ -87,6 +88,7 @@ am_libgengine_a_OBJECTS = AgentPack.$(OBJEXT) BaseAgent.$(OBJEXT) \
 	Name.$(OBJEXT) OptionAgent.$(OBJEXT) OptionParams.$(OBJEXT) \
 	Path.$(OBJEXT) Random.$(OBJEXT) ResDialogPack.$(OBJEXT) \
 	ResImagePack.$(OBJEXT) SDLException.$(OBJEXT) \
+	SDLSoundAgent.$(OBJEXT) SDLMusicLooper.$(OBJEXT) \
 	ScriptAgent.$(OBJEXT) ScriptState.$(OBJEXT) \
 	SoundAgent.$(OBJEXT) StringMsg.$(OBJEXT) StringTool.$(OBJEXT) \
 	TimerAgent.$(OBJEXT) VideoAgent.$(OBJEXT) \
@@ -129,7 +131,7 @@ CFLAGS =
 CPPFLAGS = 
 CXX = /home/ienze/git/emsdk/emscripten/1.38.16/em++
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -std=c++11 -O0 -g4 -Wall -W -Wpointer-arith -Wcast-qual -Wcast-align -Woverloaded-virtual -Wconversion -Wshadow
+CXXFLAGS = -std=c++11 -Os -Wall -W -Wpointer-arith -Wcast-qual -Wcast-align -Woverloaded-virtual -Wconversion -Wshadow
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"fillets-ng\" -DVERSION=\"1.0.1\"
 DEPDIR = .deps
@@ -246,7 +248,8 @@ libgengine_a_SOURCES = AgentPack.cpp AgentPack.h BaseAgent.cpp \
 	OptionParams.cpp OptionParams.h Path.cpp Path.h Random.cpp \
 	Random.h ResDialogPack.cpp ResDialogPack.h ResImagePack.cpp \
 	ResImagePack.h ResourceException.h ResourcePack.h ResCache.h \
-	SDLException.cpp SDLException.h  \
+	SDLException.cpp SDLException.h SDLSoundAgent.cpp \
+	SDLSoundAgent.h SDLMusicLooper.cpp SDLMusicLooper.h \
 	ScriptAgent.cpp ScriptAgent.h ScriptException.h \
 	ScriptState.cpp ScriptState.h SimpleMsg.h SoundAgent.cpp \
 	SoundAgent.h StringMsg.cpp StringMsg.h StringTool.cpp \
@@ -295,7 +298,7 @@ $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 
 clean-noinstLIBRARIES:
 	-test -z "$(noinst_LIBRARIES)" || rm -f $(noinst_LIBRARIES)
-libgengine.a: $(libgengine_a_OBJECTS) $(libgengine_a_DEPENDENCIES)
+libgengine.a: $(libgengine_a_OBJECTS) $(libgengine_a_DEPENDENCIES) 
 	-rm -f libgengine.a
 	$(libgengine_a_AR) libgengine.a $(libgengine_a_OBJECTS) $(libgengine_a_LIBADD)
 	$(RANLIB) libgengine.a
@@ -338,6 +341,8 @@ include ./$(DEPDIR)/ResDialogPack.Po
 include ./$(DEPDIR)/ResImagePack.Po
 include ./$(DEPDIR)/ResSoundPack.Po
 include ./$(DEPDIR)/SDLException.Po
+include ./$(DEPDIR)/SDLMusicLooper.Po
+include ./$(DEPDIR)/SDLSoundAgent.Po
 include ./$(DEPDIR)/ScriptAgent.Po
 include ./$(DEPDIR)/ScriptState.Po
 include ./$(DEPDIR)/Scripter.Po

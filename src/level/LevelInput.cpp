@@ -58,12 +58,12 @@ LevelInput::specKey(int keyIndex)
             break;
         case KEY_SAVE:
             if (!getLevel()->isActing()) {
-                getLevel()->action_save();
+                //HACK getLevel()->action_save();
             }
             break;
         case KEY_LOAD:
             if (!getLevel()->isShowing()) {
-                getLevel()->action_load();
+                //HACK getLevel()->action_load();
             }
             break;
         case KEY_RESTART:
@@ -114,4 +114,3 @@ LevelInput::keyUp(const KeyStroke &stroke) {
             break;
     }
 }
-

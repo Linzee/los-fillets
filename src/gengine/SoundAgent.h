@@ -8,8 +8,8 @@ class BaseMsg;
 #include "Name.h"
 #include "IntMsg.h"
 
-#include "/home/ienze/git/emsdk/emscripten/1.38.16/system/include/SDL/SDL.h"
-#include "/home/ienze/git/emsdk/emscripten/1.38.16/system/include/SDL/SDL_mixer.h"
+#include "SDL.h"
+#include "SDL_mixer.h"
 #include <string>
 
 /**

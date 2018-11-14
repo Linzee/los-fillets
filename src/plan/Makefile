@@ -90,7 +90,7 @@ CFLAGS =
 CPPFLAGS = 
 CXX = /home/ienze/git/emsdk/emscripten/1.38.16/em++
 CXXDEPMODE = depmode=gcc3
-CXXFLAGS = -std=c++11 -O0 -g4 -Wall -W -Wpointer-arith -Wcast-qual -Wcast-align -Woverloaded-virtual -Wconversion -Wshadow
+CXXFLAGS = -std=c++11 -Os -Wall -W -Wpointer-arith -Wcast-qual -Wcast-align -Woverloaded-virtual -Wconversion -Wshadow
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"\" -DPACKAGE_TARNAME=\"\" -DPACKAGE_VERSION=\"\" -DPACKAGE_STRING=\"\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"fillets-ng\" -DVERSION=\"1.0.1\"
 DEPDIR = .deps
