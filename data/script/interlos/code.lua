@@ -47,27 +47,27 @@ local function prog_init()
                 if room.qnavod1 > 0 and boring >= room.qnavod1 then
                     room.qnavod1 = -1
                     addm(5, "1st-m-proc")
-                    --planBusy(small, true, 3)
+                    planBusy(small, true, 3)
                     addm(5, "1st-m-hej")
                 elseif game_getCycles() >= room.qnavod2 and room.qnavod2 ~= -1 then
                     room.qnavod1 = -1
-                    --planBusy(small, true, 3)
+                    planBusy(small, true, 3)
                     addm(5, "1st-m-hej")
                 end
                 if room.qnavod1 == -1 then
                     room.qnavod1 = 600
                     room.qnavod2 = -1
-                    --planBusy(big, true, 4)
+                    planBusy(big, true, 4)
                     addv(5, "1st-v-navod1")
-                    --planBusy(small, false, 3)
-                    --planBusy(big, false, 1)
-                    --planBusy(small, true, 100)
-                    --planBusy(big, true, 2)
+                    planBusy(small, false, 3)
+                    planBusy(big, false, 1)
+                    planBusy(small, true, 100)
+                    planBusy(big, true, 2)
                     addm(3, "1st-m-navod4")
                     addv(0, "1st-v-navod5")
                     addm(2, "1st-m-navod6")
-                    --planBusy(big, false, 3)
-                    --planBusy(small, false, 2)
+                    planBusy(big, false, 3)
+                    planBusy(small, false, 2)
                     addv(20, "1st-v-navod7")
                     addm(20, "1st-m-navod8")
                     if room.uzreklnavod == 0 then
