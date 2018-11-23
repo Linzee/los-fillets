@@ -39,7 +39,7 @@
 //NOTE: userdir = $HOME + USER_DATA_DIR
 //HACK ifndef USER_DATA_DIR
 //HACK #define USER_DATA_DIR ".fillets-ng"
-#define USER_DATA_DIR "/data"
+#define USER_DATA_DIR "/user"
 //HACK endif
 
 const char *OptionAgent::CONFIG_FILE = "script/options.lua";
@@ -53,6 +53,9 @@ const char *OptionAgent::CONFIG_FILE = "script/options.lua";
 OptionAgent::own_init()
 {
     m_environ = new Environ();
+
+    setParam("lang", "cs");
+
     prepareVersion();
     prepareDataPaths();
     prepareLang();
@@ -96,16 +99,7 @@ OptionAgent::prepareDataPaths()
     registerWatcher("systemdir");
     registerWatcher("userdir");
     OptionAgent::agent()->setParam("systemdir", SYSTEM_DATA_DIR);
-
-    std::string userdir = "";
-    const char *home = getenv("HOME");
-    if (home) {
-        userdir = FsPath::join(home, USER_DATA_DIR);
-        OptionAgent::agent()->setParam("userdir", userdir);
-    }
-    else {
-        readUserConfig();
-    }
+    OptionAgent::agent()->setParam("userdir", USER_DATA_DIR);
 }
 //-----------------------------------------------------------------
 /**

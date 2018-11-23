@@ -171,14 +171,14 @@ VideoAgent::getVideoFlags()
     void
 VideoAgent::toggleFullScreen()
 {
-    int success = SDL_WM_ToggleFullScreen(m_screen);
-    if (success) {
-        m_fullscreen = !m_fullscreen;
-    }
-    else {
-        //NOTE: some platforms need reinit video
-        changeVideoMode(m_screen->w, m_screen->h);
-    }
+    //HACK int success = SDL_WM_ToggleFullScreen(m_screen);
+    // if (success) {
+    //     m_fullscreen = !m_fullscreen;
+    // }
+    // else {
+    //     //NOTE: some platforms need reinit video
+    //     changeVideoMode(m_screen->w, m_screen->h);
+    // }
 }
 //-----------------------------------------------------------------
 /**

@@ -98,4 +98,3 @@ function dialogStr(subtitle)
         dataPathSound(DialogState.lang, DialogState.name),
         DialogState.font, subtitle)
 end
-

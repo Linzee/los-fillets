@@ -72,12 +72,12 @@ LevelInput::specKey(int keyIndex)
             break;
         case KEY_UNDO:
             if (!getLevel()->isShowing()) {
-                getLevel()->action_undo(1);
+                //HACK getLevel()->action_undo(1);
             }
             break;
         case KEY_REDO:
             if (!getLevel()->isShowing()) {
-                getLevel()->action_undo(-1);
+                //HACK getLevel()->action_undo(-1);
             }
             break;
         case KEY_SHOW_STEPS:
@@ -104,13 +104,13 @@ LevelInput::mouseEvent(const MouseStroke &buttons)
 //-----------------------------------------------------------------
 void
 LevelInput::keyUp(const KeyStroke &stroke) {
-    int index = m_keymap->indexPressed(stroke);
-    switch (index) {
-        case KEY_UNDO:
-        case KEY_REDO:
-            getLevel()->action_undo_finish();
-            break;
-        default:
-            break;
-    }
+    //HACK  int index = m_keymap->indexPressed(stroke);
+    // switch (index) {
+    //     case KEY_UNDO:
+    //     case KEY_REDO:
+    //         getLevel()->action_undo_finish();
+    //         break;
+    //     default:
+    //         break;
+    // }
 }
